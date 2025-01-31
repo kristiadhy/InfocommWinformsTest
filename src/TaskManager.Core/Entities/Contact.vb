@@ -1,4 +1,5 @@
 ﻿Public Class Contact
+    ' I add an Id property to the Contact class to uniquely identify each contact
     Private _id As Integer
     Public Property Id() As Integer
         Get

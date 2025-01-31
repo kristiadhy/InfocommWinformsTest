@@ -62,7 +62,7 @@ Public Class ContactRepository
                     transaction.Commit()
                 End Using
             Catch ex As Exception
-                Throw ex
+                Throw
             End Try
         End Using
 
@@ -90,7 +90,7 @@ Public Class ContactRepository
         Dim contacts As New List(Of Contact)
         Using connection As New SQLiteConnection(SQLiteHelper.DBPath)
             connection.Open()
-            Dim selectQuery As String = "SELECT Id, Name, Email, Phone, Active FROM Contact"
+            Dim selectQuery As String = "SELECT * FROM Contact"
             Using command As New SQLiteCommand(selectQuery, connection)
                 Using reader As SQLiteDataReader = command.ExecuteReader()
                     While reader.Read()
@@ -106,7 +106,7 @@ Public Class ContactRepository
         Dim contacts As New List(Of Contact)
         Using connection As New SQLiteConnection(SQLiteHelper.DBPath)
             connection.Open()
-            Dim selectQuery As String = "SELECT Id, Name, Email, Phone, Active FROM Contact"
+            Dim selectQuery As String = "SELECT * FROM Contact"
             Dim whereClause As String = " WHERE "
             Using command As New SQLiteCommand(connection)
                 If (name IsNot Nothing) Then
@@ -145,7 +145,7 @@ Public Class ContactRepository
 
         Using connection As New SQLiteConnection(SQLiteHelper.DBPath)
             connection.Open()
-            Dim selectQuery As String = "SELECT Name, Email, Phone, Active FROM Contact WHERE Id = @Id"
+            Dim selectQuery As String = "SELECT * FROM Contact WHERE Id = @Id"
             Using command As New SQLiteCommand(selectQuery, connection)
                 command.Parameters.AddWithValue("@Id", id)
                 Using reader As SQLiteDataReader = command.ExecuteReader()

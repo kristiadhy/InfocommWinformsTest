@@ -19,7 +19,7 @@ Public Class AddContact
         Me.contactId = contactId
         btnAdd.Text = "Update Contact"
 
-        If (transactionMode = Global.TaskManager.UI.TransactionMode.TransactionType.Edit) Then
+        If (transactionMode = UI.TransactionMode.TransactionType.Edit) Then
             LoadContactById()
         End If
     End Sub
@@ -38,13 +38,13 @@ Public Class AddContact
             }
 
         ' For add transction
-        If (transactionMode = Global.TaskManager.UI.TransactionMode.TransactionType.Add) Then
+        If (transactionMode = UI.TransactionMode.TransactionType.Add) Then
             Using contactRepo As New ContactRepository()
                 contactRepo.InsertContact(contact)
             End Using
 
             'For edit transaction
-        ElseIf (transactionMode = Global.TaskManager.UI.TransactionMode.TransactionType.Edit) Then
+        ElseIf (transactionMode = UI.TransactionMode.TransactionType.Edit) Then
             Using contactRepo As New ContactRepository()
                 contactRepo.UpdateContact(contact, contactId)
             End Using
